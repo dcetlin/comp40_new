@@ -1,8 +1,10 @@
 #ifndef BITPACK_INCLUDED
 #define BITPACK_INCLUDED
+
 #include <stdbool.h>
 #include <stdint.h>
-#include "except.h"
+#include <except.h>
+
 bool Bitpack_fitsu(uint64_t n, unsigned width);
 bool Bitpack_fitss( int64_t n, unsigned width);
 uint64_t Bitpack_getu(uint64_t word, unsigned width, unsigned lsb);
