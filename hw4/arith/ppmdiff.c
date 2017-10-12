@@ -82,28 +82,6 @@ double ppmdiff(Pnm_ppm pixmap1, Pnm_ppm pixmap2) {
         return sqrt((cls.sum) / (3 * pixmap1->width * pixmap1->height));
 }
 
-
-
-// void apply_diff (int i, int j, A2 array2, A2Methods_Object *ptr, void *cl)
-// {
-//         (void) array2;
-
-//         Closure* _cls = ((Closure*) cl);
-
-//         Pnm_ppm pixmap2 = _cls->pixmap;
-//         Pnm_rgb px1 = ((Pnm_rgb) ptr);
-//         Pnm_rgb px2 = ((Pnm_rgb)(pixmap2->methods->at(pixmap2->pixels, i, j)));
-
-//         unsigned red_dif = (px1->red > px2->red)? px1->red - px2->red: px2->red - px1->red;
-//         unsigned green_dif = (px1->green > px2->green)? px1->green - px2->green: px2->green - px1->green;
-//         unsigned blue_dif = (px1->blue > px2->blue)? px1->blue - px2->blue: px2->blue - px1->blue;
-
-//         //printf("cls = %.4f. Adding: %f + %f + %f\n", _cls->sum, pow((red_dif), 2), pow((green_dif), 2), pow((blue_dif), 2));
-//         //printf("<r: %u, g: %u, b: %u\nr: %u, g: %u, b: %u>\n\n", px1->red, px2->red, px1->green, px2->green, px1->blue, px2->blue);
-
-//         _cls->sum += (pow((red_dif), 2) + pow((green_dif), 2) + pow((blue_dif), 2));
-// }
-
 void apply_diff (int i, int j, A2 array2, A2Methods_Object *ptr, void *cl)
 {
         (void) array2;
