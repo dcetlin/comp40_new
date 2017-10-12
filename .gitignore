@@ -6,6 +6,8 @@
 *.ko
 *.obj
 *.elf
+#SFTP-congig
+.json
 
 # Linker output
 *.ilk
