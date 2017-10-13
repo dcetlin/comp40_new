@@ -17,11 +17,12 @@ bool Bitpack_fitss( int64_t n, unsigned width)
 {
 	assert(width <= 64);
 
+	printf("Width: %u\n", width);
 
-	int64_t min = -1 * (1 << (width - 1));
-	int64_t max = (1 << (width - 1)) - 1;
+	int64_t min = ((int64_t) 1 << (63)) >> (64 - width);
+	int64_t max = ((int64_t) 1 << (width - 1)) - 1;
 
-	printf("{{%lx} = {%li}} <= {{%016lx} = {%li}} <= {{%lx} = {%li}}\n",min, min, n, n, max, max);
+	// printf("{{%016lx} = {%li}} <= {{%016lx} = {%li}} <= {{%016lx} = {%li}}\n",min, min, n, n, max, max);
 
 	return (n >= min && n <= max && width);
 }
@@ -75,5 +76,10 @@ uint64_t Bitpack_news(uint64_t word, unsigned width, unsigned lsb,  int64_t valu
 
 	uint64_t mask = ~create_mask(width, lsb);
 
-	return (word & mask) | (((value & ((2 << (width - 1)) - 1))) << lsb);
+	// printf("\n ");
+
+	// printf("\n");
+	// printf("{%016lx}\n ==/>  \n{%016lx}\n", value, word);
+
+	return (word & mask) | (((value & ((2 << width) - 1))) << lsb);
 }
