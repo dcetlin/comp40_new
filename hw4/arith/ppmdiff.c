@@ -1,10 +1,10 @@
 #include <string.h>
 #include <stdlib.h>
 #include <stdio.h>
-#include "assert.h"
-#include "a2methods.h"
-#include "a2plain.h"
-#include "a2blocked.h"
+#include <assert.h>
+#include "headers/a2methods.h"
+#include "headers/a2plain.h"
+#include "headers/a2blocked.h"
 #include <pnm.h>
 #include <math.h>
 

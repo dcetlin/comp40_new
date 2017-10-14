@@ -1,6 +1,11 @@
 #ifndef RGB_VCS_CONVERTER_H
 #define RGB_VCS_CONVERTER_H
 
+#include <pnm.h>
+#include "a2methods.h"
+
+#define A2 A2Methods_UArray2
+
 void rgb_to_vcs(Pnm_ppm pmap);
 
 void vcs_to_rgb(Pnm_ppm pmap);

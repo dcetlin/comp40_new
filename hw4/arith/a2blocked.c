@@ -1,7 +1,7 @@
 #include <string.h>
 
 #include <a2blocked.h>
-#include "uarray2b.h"
+#include "headers/uarray2b.h"
 
 // define a private version of each function in A2Methods_T that we implement
 

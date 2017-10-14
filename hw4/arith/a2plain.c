@@ -1,7 +1,7 @@
 #include <stdlib.h>
 
 #include <a2plain.h>
-#include "uarray2.h"
+#include "headers/uarray2.h"
 
 typedef A2Methods_UArray2 A2;	// private abbreviation
 

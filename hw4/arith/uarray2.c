@@ -11,8 +11,8 @@
 *             that manipulate the contents of the array.
 */
 
-#include "uarray2.h"
-#include "uarray2rep.h"
+#include "headers/uarray2.h"
+#include "headers/uarray2rep.h"
 
 #define T UArray2_T
 

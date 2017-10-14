@@ -2,6 +2,10 @@
 #define COMPRESS40_H
 
 #include <stdio.h>
+#include "vcs.h"
+#include <pnm.h>
+
+#define A2 A2Methods_UArray2
 
 typedef struct Closure {
 	int counter;
@@ -14,8 +18,8 @@ extern void decompress40(FILE *input);  /* reads compressed image, writes PPM */
 
 void trim(Pnm_ppm pmap);
 
-void apply_compress(int i, int j, A2 array2, A2Methods_Object *ptr, void *cl)
+void apply_compress(int i, int j, A2 array2, A2Methods_Object *ptr, void *cl);
 
-void apply_decompress(int i, int j, A2 array2, A2Methods_Object *ptr, void *cl)
+void apply_decompress(int i, int j, A2 array2, A2Methods_Object *ptr, void *cl);
 
 #endif
