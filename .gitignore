@@ -9,6 +9,10 @@
 #SFTP-congig
 .json
 
+#comp40
+.fullname
+.partner
+
 # Linker output
 *.ilk
 *.map
