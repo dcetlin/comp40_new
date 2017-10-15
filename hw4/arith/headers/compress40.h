@@ -18,8 +18,8 @@ extern void decompress40(FILE *input);  /* reads compressed image, writes PPM */
 
 void trim(Pnm_ppm pmap);
 
-void apply_compress(int i, int j, A2 array2, A2Methods_Object *ptr, void *cl);
+void apply_compress(A2Methods_Object *ptr, void *cl);
 
-void apply_decompress(int i, int j, A2 array2, A2Methods_Object *ptr, void *cl);
+void apply_decompress(A2Methods_Object *ptr, void *cl);
 
 #endif

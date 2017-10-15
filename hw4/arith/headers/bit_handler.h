@@ -1,7 +1,13 @@
 #ifndef BIT_HANDLER_H
 #define BIT_HANDLER_H
 
-void print_bits(uint32_T word);
+#include "vcs.h"
+#include <stdlib.h>
+#include <stdio.h>
+#include <stdint.h>
+
+
+void print_bits(uint32_t word);
 
 uint32_t extract_bits(FILE* fp);
 
