@@ -1,6 +1,7 @@
 #include "headers/algorithms.h"
 #include <arith40.h>
 #include <math.h>
+#include <stdio.h>
 
 void discrete_cos_transform(Vcs* values, unsigned* a, int* b, int* c, int* d)
 {
@@ -13,6 +14,8 @@ void discrete_cos_transform(Vcs* values, unsigned* a, int* b, int* c, int* d)
 	*b = quantize_coef(b_f);
 	*c = quantize_coef(c_f);
 	*d = quantize_coef(d_f);
+
+	//printf("a: %f => %u | b: %f => %i | c: %f => %i | d: %f => %i\n", a_f, *a, b_f, *b, c_f, *c, d_f, *d);
 }
 
 void inv_discrete_cos_transform(Vcs* values, unsigned a, int b, int c, int d)
