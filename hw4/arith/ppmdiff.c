@@ -104,6 +104,8 @@ void apply_diff (int i, int j, A2 array2, A2Methods_Object *ptr, void *cl)
         double g2 = px2->green / den2;
         double b2 = px2->blue / den2;
 
+        //printf("px1: {r: %u, g: %u, b: %u} px2: {r: %u, g: %u, b: %u}\n", px1->red, px1->green, px1->blue, px2->red, px2->green, px2->blue);
+
         double red_dif = (r1 > r2)? r1 - r2: r2 - r1;
         double green_dif = (g1 > g2)? g1 - g2: g2 - g1;
         double blue_dif = (b1 > b2)? b1 - b2: b2 - b1;

@@ -40,8 +40,6 @@ extern void compress40  (FILE *input)
 
 	rgb_to_vcs(pmap);
 
-	Pnm_ppmwrite(stdout, pmap);
-
 	Closure cls = ALLOC(sizeof(*cls));
 	assert(cls);
 	cls->counter = 0;
@@ -51,7 +49,7 @@ extern void compress40  (FILE *input)
 	printf("COMP40 Compressed image format 2\n%u %u\n",
 			pmap->width, pmap->height);
 
-	pmap->methods->small_map_default(pmap, apply_compress, (void*) cls);
+	pmap->methods->small_map_default(pmap->pixels, apply_compress, (void*) cls);
 
 	FREE((cls->values));
 	FREE(cls);
@@ -68,7 +66,7 @@ extern void decompress40(FILE *input) {
 
 	A2 array = uarray2_methods_blocked->new_with_blocksize(width, height, sizeof(Vcs), 2);
 
-	struct Pnm_ppm pmap = {.width = width, .height = height, .denominator = 255,
+	struct Pnm_ppm pmap = {.width = width, .height = height, .denominator = 455,
 							.methods = uarray2_methods_blocked,
 							.pixels = array
 	};
@@ -86,9 +84,8 @@ extern void decompress40(FILE *input) {
 
 	FREE((cls->values));
 	FREE(cls);
-	fclose(input);
 
-	pmap.methods->free(&array);
+	pmap.methods->free(&(pmap.pixels));
 }
 
 
@@ -98,13 +95,14 @@ void apply_compress(A2Methods_Object *ptr, void *cl) {
 	Closure cls = (Closure) cl;
 	Vcs pixel = *((Vcs*) ptr);
 
+	cls->values[cls->counter] = pixel;
+	//printf("y: %f pb: %f pr: %f\n", pixel.y, pixel.pb, pixel.pr);
+	cls->counter++;
+
 	if (cls->counter > 3) {
 		cls->counter = 0;
 		print_bits(convert_to_bits(cls->values));
 	}
-
-	cls->values[cls->counter] = pixel;
-	cls->counter++;
 }
 
 void apply_decompress(A2Methods_Object *ptr, void *cl)
@@ -115,6 +113,6 @@ void apply_decompress(A2Methods_Object *ptr, void *cl)
 	}
 	
 	*((Vcs*) ptr) = cls->values[cls->counter];
-	
+
 	cls->counter = (cls->counter + 1) % 4;
 }

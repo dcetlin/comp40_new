@@ -68,7 +68,7 @@ ppmdiff: ppmdiff.o a2blocked.o a2plain.o uarray2b.o uarray2.o
 	$(CC) $(LDFLAGS) $^ -o $@ $(LDLIBS)
 
 40image: 40image.o compress40.o rgb_vcs_converter.o a2blocked.o a2plain.o \
-         uarray2b.o uarray2.o bit_handler.o algorithms.o bitpack.o arith40.o
+         uarray2b.o uarray2.o bit_handler.o algorithms.o bitpack.o
 	$(CC) $(LDFLAGS) $^ -o $@ $(LDLIBS)
 
 clean:
