@@ -66,7 +66,7 @@ extern void decompress40(FILE *input) {
 
 	A2 array = uarray2_methods_blocked->new_with_blocksize(width, height, sizeof(Vcs), 2);
 
-	struct Pnm_ppm pmap = {.width = width, .height = height, .denominator = 455,
+	struct Pnm_ppm pmap = {.width = width, .height = height, .denominator = 255,
 							.methods = uarray2_methods_blocked,
 							.pixels = array
 	};

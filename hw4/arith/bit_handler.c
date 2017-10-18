@@ -6,28 +6,25 @@
 
 void print_bits(uint32_t word)
 {
-	for (int k = 31; k >= 0; k--) {
-		printf("%u", (unsigned) Bitpack_getu(word, 1, k));
+	// for (int k = 31; k >= 0; k--) {
+	// 	printf("%u", (unsigned) Bitpack_getu(word, 1, k));
+	// }
+
+	for (int bit_loc = 24; bit_loc >= 0; bit_loc -= 8) {
+		//printf("[%u]", (unsigned) Bitpack_getu(word, 8, bit_loc));
+		putchar((char) Bitpack_getu(word, 8, bit_loc));
 	}
 }
 
 uint32_t extract_bits(FILE* fp) {
 	uint32_t word = 0;
-	char bit;
 
-	for (int k = 31; k >= 0; k--) {
-		bit = getc(fp);
-		//printf("(%c", bit);
-		assert (bit == '0' || bit == '1');
-		
-		if (bit == '0') {
-			bit = 0;
-		} else {
-			bit = 1;
-		}
-
-		assert(bit != EOF);
-		word = Bitpack_newu(word, 1, k, bit);
+	signed byte;
+	for (int bit_loc = 24; bit_loc >= 0; bit_loc -= 8) {
+		byte = getc(fp);
+	//	fprintf(stderr, "{%i}\n", byte);		
+		assert(byte != EOF);
+		word = Bitpack_newu(word, 8, bit_loc, byte);
 	}
 
 	//printf("word{%08x}\n", word);

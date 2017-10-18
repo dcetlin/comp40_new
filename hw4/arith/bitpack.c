@@ -12,7 +12,8 @@ bool Bitpack_fitsu(uint64_t n, unsigned width)
 	uint64_t max = ~0;
 	max >>= 64 - width;
 
-	//printf("width: %u | (%016lx = %lu) < (%016lx = %lu)\n", width, n, n, max, max);
+	// if (!(n <= max && width))
+	// 	fprintf(stderr, "width: %u | (%016lx = %lu) < (%016lx = %lu)\n", width, n, n, max, max);
 
 	return (n <= max && width);
 }

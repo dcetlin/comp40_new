@@ -54,9 +54,15 @@ void apply_vcs_to_rgb(int i, int j, A2 array2, A2Methods_Object *ptr, void *cl)
 	
 	Vcs vcs = *((Vcs*)uarray2_methods_blocked->at(old_pixmap, i, j));
 
-	struct Pnm_rgb pixel_info = {.red = round((1.0 * vcs.y + 0 * vcs.pb + 1.402 * vcs.pr) * denom),
-		.green = round((1.0 * vcs.y - 0.344136 * vcs.pb - 0.714136 * vcs.pr) * denom),
-		.blue = round((1.0 * vcs.y + 1.772 * vcs.pb + 0.0 * vcs.pr) * denom) };	
+	int red = round((1.0 * vcs.y + 0 * vcs.pb + 1.402 * vcs.pr) * denom);
+	int green = round((1.0 * vcs.y - 0.344136 * vcs.pb - 0.714136 * vcs.pr) * denom);
+	int blue = round((1.0 * vcs.y + 1.772 * vcs.pb + 0.0 * vcs.pr) * denom);
+
+	//fprintf(stderr, "{r: %i, g: %i, b: %i}\n", red, green, blue);
+
+	struct Pnm_rgb pixel_info = {.red = (red < 0)? 0: (red > 255)? 255: (unsigned) red,
+		.green = (green < 0)? 0: (green > 255)? 255: (unsigned) green,
+		.blue = (blue < 0)? 0: (blue > 255)? 255: (unsigned) blue };	
 
 	*((Pnm_rgb)ptr) = pixel_info;
 }
