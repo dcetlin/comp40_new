@@ -1,1 +1,26 @@
-This is a README
+Programmers: Daniel Cetlin and Jeremy Batchelder
+Acknowledgements: None
+Correctness: We believe that everything has been implemented correctly
+Architecture of our solution:
+
+Our solution architecture consists of five main pieces: compress40, 
+        rgb_vcs_converter, algorithms, bit_handler, and bit_pack.
+
+        The compress40 interface is the driver that will call the 
+        corresponding functions that are necessary to compress the image. 
+        The trim function will be called to properly trim the image.
+        The respective rgb_vcs_converter interface functions will be called 
+        to convert the pixels from RGB into VCS. 
+        After the the pixels have been converted, the default mapping
+        function will be called with apply_compress from the compress40 
+        interface to properly compress or decompress the image
+        Within the apply function, functions the bit_handler interface 
+        will be called. These functions will call functions from the algorithms
+        interface to quantize the pixel values and bitpack interface to pack
+        the quantized pixels into 32 bits.
+
+        When we are decompressing a compressed image, this process will run
+        in reverse. 
+
+We spent 15 hours analyzing the problem
+We spent 11 hours solving the problem
