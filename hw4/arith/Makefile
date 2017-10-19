@@ -73,4 +73,3 @@ ppmdiff: ppmdiff.o a2blocked.o a2plain.o uarray2b.o uarray2.o
 
 clean:
 	rm -f all *.o
-

@@ -8,7 +8,7 @@
  *  10/20/2017
  *  algorithms.h
  *  Purpose: Private functions used to compute quantinizations on each part of
- *  			a Video Component Space pixel (Y, Pr, Pb).
+ *           a Video Component Space pixel (Y, Pr, Pb).
  */
 
 #ifndef ALGORITHMS_H

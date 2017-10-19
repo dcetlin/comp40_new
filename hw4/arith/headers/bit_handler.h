@@ -1,14 +1,14 @@
-/*	
-*	COMP 40 HW4
-*	Arith
-*	
+/*      
+*       COMP 40 HW4
+*       Arith
+*       
 *
-*	Jeremy Batchelder UTLN: jbatch01 
-*	Daniel Cetlin UTLN: dcetlin01
+*       Jeremy Batchelder UTLN: jbatch01 
+*       Daniel Cetlin UTLN: dcetlin01
 *
-*	10/20/17
-*	bit_handler.h
-*	Purpose: This file is the interface for bit_handler
+*       10/20/17
+*       bit_handler.h
+*       Purpose: This file is the interface for bit_handler
 */
 #ifndef BIT_HANDLER_H
 #define BIT_HANDLER_H

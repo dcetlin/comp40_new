@@ -1,9 +1,20 @@
+/*      
+*       COMP 40 HW4
+*       Arith
+*       
+*
+*       Jeremy Batchelder UTLN: jbatch01 
+*       Daniel Cetlin UTLN: dcetlin01
+*
+*       10/20/17
+*       40image.c
+*       Purpose: Compresses or decompresses a given file
+*/
 #include <string.h>
 #include <stdlib.h>
 #include <stdio.h>
 #include "assert.h"
 #include "headers/compress40.h"
-
 
 static void (*compress_or_decompress)(FILE *input) = compress40;
 

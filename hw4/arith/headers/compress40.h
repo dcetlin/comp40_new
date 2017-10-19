@@ -13,6 +13,10 @@
 #ifndef COMPRESS40_H
 #define COMPRESS40_H
 
+#include <pnm.h>
+#include "a2methods.h"
+#include "vcs.h"
+
 /****************************************************************
  *																*	
  *	   Private Functions for compress40 implementation			*
