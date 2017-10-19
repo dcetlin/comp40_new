@@ -1,3 +1,16 @@
+/*
+ *  COMP 40 HW4
+ *  Arith
+ *
+ *  Jeremy Batchelder UTLN: jbatch01
+ *  Daniel Cetlin UTLN: dcetli01
+ *
+ *  10/20/2017
+ *  algorithms.h
+ *  Purpose: Private functions used to compute quantinizations on each part of
+ *  			a Video Component Space pixel (Y, Pr, Pb).
+ */
+
 #ifndef ALGORITHMS_H
 #define ALGORITHMS_H
 
