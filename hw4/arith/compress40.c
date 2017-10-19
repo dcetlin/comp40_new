@@ -11,16 +11,19 @@
 *       Purpose: This file is the implementation of the compress40 interface.
 */
 
-#include "headers/compress40.h"
-#include "headers/rgb_vcs_converter.h"
+#include <compress40.h>
+#include "rgb_vcs_converter.h"
 #include <pnm.h>
-#include "headers/a2methods.h"
-#include "headers/a2plain.h"
-#include "headers/a2blocked.h"
-#include "headers/bit_handler.h"
+#include "a2methods.h"
+#include "a2plain.h"
+#include "a2blocked.h"
+#include "bit_handler.h"
 #include <stdbool.h>
 #include <assert.h>
 #include <mem.h>
+#include <pnm.h>
+#include "a2methods.h"
+#include "vcs.h"
 
 #define A2 A2Methods_UArray2
 
@@ -32,6 +35,27 @@
         assert(CLS->values != NULL);                    \
         CLS->fp = FILE;                                 \
 } while (0)
+
+/****************************************************************
+ *                                                              *               
+ *         Private Functions for compress40 implementation      *       
+ *                                                              *
+ ****************************************************************/
+
+void trim(Pnm_ppm pmap);
+
+void apply_compress(A2Methods_Object *ptr, void *cl);
+
+void apply_decompress(A2Methods_Object *ptr, void *cl);
+
+/*
+ * Purpose: Closure struct used in apply_compress and apply_decompress.
+ */
+typedef struct Closure {
+        int counter;
+        Vcs* values;
+        FILE* fp; 
+}* Closure;
 
 /* 
  * trim (used as local function)
@@ -56,9 +80,11 @@ void trim(Pnm_ppm pmap)
  * Purpose: Prints the given pnm image in bits after compressing to stdout
  * Parameters: Accepts a pointer to a file
  * Returns: None
- * CRE: None
+ * CRE: It is a checked runtime error for the inputed file to not be a 
+ *      propperly formatted .pnm file (.ppm, .pgm, .pbm). This check is 
+ *      performed by the Pnm_ppm interface.
  */
-extern void compress40  (FILE *input)
+extern void compress40(FILE *input)
 {       
         Pnm_ppm pmap = Pnm_ppmread(input, uarray2_methods_plain);
         trim(pmap);
@@ -69,11 +95,8 @@ extern void compress40  (FILE *input)
         SET_CLOSURE(cls, NULL);
         
         printf("COMP40 Compressed image format 2\n%u %u\n",
-                        pmap->width, pmap->height);
-
-        pmap->methods->small_map_default(pmap->pixels, apply_compress,
-                                        (void*) cls);
-
+                pmap->width, pmap->height);
+        pmap->methods->small_map_default(pmap->pixels, apply_compress, cls);
         FREE((cls->values));
         FREE(cls);
 
@@ -83,7 +106,7 @@ extern void compress40  (FILE *input)
 /* 
  * decompress40
  * Purpose: Prints the given compressed file in proper pnm format after
- *      decompressing to stdout. 
+ *          decompressing to stdout. 
  * Parameters: Accepts a pointer to a file
  * Returns: None
  * CRE: It is a Checked Runtime Error for there to be fewer than 32 * 
@@ -97,8 +120,8 @@ extern void decompress40(FILE *input) {
         int c = getc(input);
         assert(c == '\n');
 
-        A2 array = uarray2_methods_blocked->new_with_blocksize(width, height,
-                                                        sizeof(Vcs), 2);
+        A2 array = uarray2_methods_blocked->
+                   new_with_blocksize(width, height, sizeof(Vcs), 2);
 
         struct Pnm_ppm pmap = {.width = width, .height = height,
                 .denominator = 255, .methods = uarray2_methods_blocked,
@@ -108,9 +131,7 @@ extern void decompress40(FILE *input) {
         Closure cls;
         SET_CLOSURE(cls, input);
 
-        pmap.methods->small_map_default(pmap.pixels, apply_decompress, 
-                                        (void*) cls);
-
+        pmap.methods->small_map_default(pmap.pixels, apply_decompress, cls);
         vcs_to_rgb(&pmap);
         Pnm_ppmwrite(stdout, &pmap);
 

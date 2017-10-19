@@ -11,7 +11,7 @@
  *           a Video Component Space pixel (Y, Pr, Pb).
  */
 
-#include "headers/algorithms.h"
+#include "algorithms.h"
 #include <arith40.h>
 #include <math.h>
 #include <stdio.h>
@@ -26,10 +26,14 @@
  */
 void discrete_cos_transform(Vcs* values, unsigned* a, int* b, int* c, int* d)
 {
-        float a_f = (values[3].y + values[2].y + values[1].y + values[0].y) / 4.0;
-        float b_f = (values[3].y + values[2].y - values[1].y - values[0].y) / 4.0;
-        float c_f = (values[3].y - values[2].y + values[1].y - values[0].y) / 4.0;
-        float d_f = (values[3].y - values[2].y - values[1].y + values[0].y) / 4.0;
+        float a_f = (values[3].y + values[2].y + values[1].y + values[0].y)
+                     / 4.0;
+        float b_f = (values[3].y + values[2].y - values[1].y - values[0].y)
+                     / 4.0;
+        float c_f = (values[3].y - values[2].y + values[1].y - values[0].y)
+                     / 4.0;
+        float d_f = (values[3].y - values[2].y - values[1].y + values[0].y)
+                     / 4.0;
 
         *a = (unsigned) round(a_f * 511);
         *b = quantize_coef(b_f);

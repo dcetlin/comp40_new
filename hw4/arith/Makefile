@@ -1,11 +1,14 @@
-# Makefile for locality (Comp 40 Assignment 3)
+#    
+#       COMP 40 HW4
+#       Arith
 #
-# Includes build rules for a2test and ppmtrans.
+#       Jeremy Batchelder UTLN: jbatch01 
+#       Daniel Cetlin UTLN: dcetlin01
 #
-# This Makefile is more verbose than necessary.  In each assignment
-# we will simplify the Makefile using more powerful syntax and implicit rules.
+#       10/20/17
+#       Makefile
+#       makes ppmdiff and 40image executable
 #
-# Last updated: February 16, 2016
 
 
 ############## Variables ###############
@@ -49,20 +52,16 @@ INCLUDES = $(shell echo *.h)
 
 ############### Rules ###############
 
-all: ppmdiff test_bitpack 40image
+all: ppmdiff 40image
 
 
 ## Compile step (.c files -> .o files)
-
 
 # To get *any* .o file, compile its .c file with the following rule.
 %.o: %.c $(INCLUDES)
 	$(CC) $(CFLAGS) -c $< -o $@
 
 ## Linking step (.o -> executable program)
-
-test_bitpack: test_bitpack.o bitpack.o
-	$(CC) $(LDFLAGS) $^ -o $@ $(LDLIBS)
 
 ppmdiff: ppmdiff.o a2blocked.o a2plain.o uarray2b.o uarray2.o 
 	$(CC) $(LDFLAGS) $^ -o $@ $(LDLIBS)

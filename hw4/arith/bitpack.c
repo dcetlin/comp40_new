@@ -11,7 +11,7 @@
  *           words.
  */
 
-#include "bitpack.h"
+#include <bitpack.h>
 #include <assert.h>
 #include <stdio.h>
 Except_T Bitpack_Overflow = { "Overflow packing bits" };

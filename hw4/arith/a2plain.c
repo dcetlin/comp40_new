@@ -1,12 +1,8 @@
 #include <stdlib.h>
-
 #include <a2plain.h>
-#include "headers/uarray2.h"
+#include "uarray2.h"
 
-typedef A2Methods_UArray2 A2;   // private abbreviation
-
-// define a private version of each function in A2Methods_T that we implement
-//comment
+typedef A2Methods_UArray2 A2;
 
 static A2 new(int width, int height, int size)
 {
@@ -54,9 +50,9 @@ typedef void UArray2_apply(int row, int col, UArray2_T a2, void *elem,
 extern void UArray2_map_row_major(UArray2_T a2, UArray2_apply apply, void *cl);
 
 struct a2fun_closure {
-        A2Methods_applyfun *apply; /* apply function as known to A2Methods */
-        void *cl; /* closure to go with apply function */
-        A2 array2; /* array being mapped over */
+        A2Methods_applyfun *apply;
+        void *cl; 
+        A2 array2;
 };
 
 static void apply_a2methods_using_array2_prototype(int row, int col,

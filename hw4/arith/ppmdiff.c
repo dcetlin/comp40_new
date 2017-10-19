@@ -1,10 +1,21 @@
+/*
+ *  COMP 40 HW4
+ *  Arith
+ *
+ *  Jeremy Batchelder UTLN: jbatch01
+ *  Daniel Cetlin UTLN: dcetli01
+ *
+ *  10/20/2017
+ *  ppmdiff.c
+ *  Purpose: Compare two pnm files
+ */
 #include <string.h>
 #include <stdlib.h>
 #include <stdio.h>
 #include <assert.h>
-#include "headers/a2methods.h"
-#include "headers/a2plain.h"
-#include "headers/a2blocked.h"
+#include "a2methods.h"
+#include "a2plain.h"
+#include "a2blocked.h"
 #include <pnm.h>
 #include <math.h>
 
@@ -30,7 +41,8 @@ int main(int argc, char *argv[])
         int stdin_check = 0;
         
         if (argc != 3) {
-                fprintf(stderr, "Usage: ppmdiff [filename, '-'] [filename, '-']\n");
+                fprintf(stderr,
+                        "Usage: ppmdiff [filename, '-'] [filename, '-']\n");
                 exit(EXIT_FAILURE);
         }
         if (strcmp(argv[1], "-") == 0) {
@@ -41,7 +53,7 @@ int main(int argc, char *argv[])
                 assert(fp1);
         } 
 
-        pixmap1 = Pnm_ppmread(fp1, uarray2_methods_plain); //uses plain array2
+        pixmap1 = Pnm_ppmread(fp1, uarray2_methods_plain);
 
         if (strcmp(argv[2], "-") == 0) {
                 if (stdin_check) {
@@ -55,10 +67,12 @@ int main(int argc, char *argv[])
                 assert(fp2);
         } 
 
-        pixmap2 = Pnm_ppmread(fp2, uarray2_methods_plain); //uses plain array2
+        pixmap2 = Pnm_ppmread(fp2, uarray2_methods_plain);
 
-        if (abs(pixmap1->height - pixmap2->height) > 1 || abs(pixmap1->width - pixmap2->width) > 1) {
-                fprintf(stderr, "Heights and/or widths differ by more than 1\n");
+        if (abs(pixmap1->height - pixmap2->height) > 1
+            ||abs(pixmap1->width - pixmap2->width) > 1) {
+                fprintf(stderr,
+                        "Heights and/or widths differ by more than 1\n");
                 printf("1.0\n");
                 return EXIT_SUCCESS;
         }
@@ -104,16 +118,10 @@ void apply_diff (int i, int j, A2 array2, A2Methods_Object *ptr, void *cl)
         double g2 = px2->green / den2;
         double b2 = px2->blue / den2;
 
-        //fprintf(stderr, "px1: {r: %u, g: %u, b: %u} px2: {r: %u, g: %u, b: %u}\n", px1->red, px1->green, px1->blue, px2->red, px2->green, px2->blue);
-
         double red_dif = (r1 > r2)? r1 - r2: r2 - r1;
         double green_dif = (g1 > g2)? g1 - g2: g2 - g1;
         double blue_dif = (b1 > b2)? b1 - b2: b2 - b1;
 
-        // printf("cls = %.4f. Adding: %f + %f + %f\n", _cls->sum, pow((red_dif), 2), pow((green_dif), 2), pow((blue_dif), 2));
-        // printf("<r: %u / %.f = %f, g: %u / %.f = %f, b: %u / %.f = %f\nr: %u / %.f = %f, g: %u / %.f = %f, b: %u / %.f = %f\n\n", px1->red, den1, r1, px1->green, den1, g1, px1->blue, den1, b1, px2->red, den2, r2, px2->green, den2, g2, px2->blue, den2, b2);
-
-        _cls->sum += (pow((red_dif), 2) + pow((green_dif), 2) + pow((blue_dif), 2));
+        _cls->sum += (pow((red_dif), 2) + pow((green_dif), 2)
+                  + pow((blue_dif), 2));
 }
-
-

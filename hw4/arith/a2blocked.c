@@ -1,7 +1,7 @@
 #include <string.h>
 
 #include <a2blocked.h>
-#include "headers/uarray2b.h"
+#include "uarray2b.h"
 
 typedef A2Methods_UArray2 A2; 
 

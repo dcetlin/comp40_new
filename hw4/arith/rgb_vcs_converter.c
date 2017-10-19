@@ -11,12 +11,12 @@
  *           pixel values between Video Component Space and RGB.
  */
 
-#include "headers/rgb_vcs_converter.h"
-#include "headers/vcs.h"
+#include "rgb_vcs_converter.h"
+#include "vcs.h"
 #include <pnm.h>
 #include <stdio.h>
-#include "headers/a2plain.h"
-#include "headers/a2blocked.h"
+#include "a2plain.h"
+#include "a2blocked.h"
 #include <math.h>
 #include <assert.h>
 
@@ -117,7 +117,6 @@ void apply_vcs_to_rgb(int i, int j, A2 array2, A2Methods_Object *ptr, void *cl)
                            * denom);
         int blue  = round((1.0 * vcs.y + 1.772 * vcs.pb + 0.0 * vcs.pr)
                            * denom);
-
         struct Pnm_rgb pixel_info = {
                 .red   = (red < 0)  ? 0: (red > 255)  ? 255: (unsigned) red,
                 .green = (green < 0)? 0: (green > 255)? 255: (unsigned) green,

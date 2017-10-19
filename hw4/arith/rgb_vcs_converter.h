@@ -8,7 +8,7 @@
  *  10/20/2017
  *  rgb_vcs_converter.h
  *  Purpose: Two public functions that take in a pmap and convert all of the 
- *   		 pixel values between Video Component Space and RGB.
+ *               pixel values between Video Component Space and RGB.
  */
 
 #ifndef RGB_VCS_CONVERTER_H
@@ -34,9 +34,9 @@ void rgb_to_vcs(Pnm_ppm pmap);
 void vcs_to_rgb(Pnm_ppm pmap);
 
 void apply_rgb_to_vcs(int i, int j, A2 array2, A2Methods_Object *ptr,
-				      void *cl);
+                                      void *cl);
 
 void apply_vcs_to_rgb(int i, int j, A2 array2, A2Methods_Object *ptr,
-					  void *cl);
+                                          void *cl);
 
 #endif

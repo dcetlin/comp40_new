@@ -10,13 +10,14 @@
 *       bit_handler.c
 *       Purpose: This file is the implementation of the bit_handler interface.
 */
-#include "headers/bit_handler.h"
-#include "headers/algorithms.h"
-#include "headers/bitpack.h"
+#include "bit_handler.h"
+#include "algorithms.h"
+#include "bitpack.h"
 #include <assert.h>
 #include <stdio.h>
 
 /*
+ *      print_bits
  *      Purpose: Prints the given word in binary in Big Endian format.
  *      Parameters: A single 32 bit word
  *      Returns: None
@@ -30,15 +31,16 @@ void print_bits(uint32_t word)
 }
 
 /*
+ *      extract_bits
  *      Purpose: Reads in 32 bits from the given Big Endian formatted binary
  *              file and returns a word filled with the 32 bits.
  *      Parameters: File pointer
  *      Returns: A single 32 bit word which will contain the 
- *      bits read in from the file
- *      CRE:  If at any point, the end of file character is read in, it would
- *      imply that the given file is either too short, or the last word is
- *      incomplete. In either case, the program will fail with a Checked 
- *      Runtime Error.
+ *               bits read in from the file
+ *      CRE: If at any point, the end of file character is read in, it would
+ *           imply that the given file is either too short, or the last word is
+ *           incomplete. In either case, the program will fail with a Checked 
+ *           Runtime Error.
  *
  */
 uint32_t extract_bits(FILE* fp) {
@@ -54,7 +56,8 @@ uint32_t extract_bits(FILE* fp) {
 }
 
 /*
- *      Purpose: This function converts, quantizes, and compresses the input 
+ *      convert_to_bits
+ *      Purpose: This function converts, quantizes, and compresses the input
  *              values and returns them in bits.
  *      Parameters: A pointer to an array of Vcs structs 
  *      Returns: The arguments in a single 32 bit word. 
@@ -80,8 +83,9 @@ uint32_t convert_to_bits(Vcs* values)
 }
 
 /*
+ *      interpret_bits
  *      Purpose: This function decompresses, quantizes, and converts values
- *              and places them in the values argument
+ *               and places them in the values argument
  *      Parameters: A pointer to an array of Vcs structs and a single 32
  *                  bit word
  *      Returns: The arguments in a single 32 bit word. 

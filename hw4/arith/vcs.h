@@ -2,7 +2,7 @@
 #define VCS_H
 
 typedef struct Vcs {
-	float y, pb, pr;
+        float y, pb, pr;
 } Vcs;
 
 #endif
