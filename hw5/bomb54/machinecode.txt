@@ -418,38 +418,48 @@ Disassembly of section .text:
   4010b3:	7f 05                	jg     4010ba <phase_3+0x27>
   4010b5:	e8 9a 07 00 00       	callq  401854 <explode_bomb>
   4010ba:	83 7c 24 0c 07       	cmpl   $0x7,0xc(%rsp)
-  4010bf:	77 66                	ja     401127 <phase_3+0x94>
+  4010bf:	77 66                	ja     401127 <phase_3+0x94> //unsigned greator than
   4010c1:	8b 44 24 0c          	mov    0xc(%rsp),%eax
   4010c5:	ff 24 c5 e0 1c 40 00 	jmpq   *0x401ce0(,%rax,8)
-  4010cc:	b8 00 00 00 00       	mov    $0x0,%eax
+  4010cc:	b8 00 00 00 00       	mov    $0x0,%eax             //Case default;set eax to 0, blow up bomb
   4010d1:	eb 05                	jmp    4010d8 <phase_3+0x45>
-  4010d3:	b8 75 02 00 00       	mov    $0x275,%eax
-  4010d8:	2d 89 03 00 00       	sub    $0x389,%eax
+  4010d3:	b8 75 02 00 00       	mov    $0x275,%eax             //Case ;set eax to 629
+  
+  4010d8:	2d 89 03 00 00       	sub    $0x389,%eax             //; subtrackt 905
   4010dd:	eb 05                	jmp    4010e4 <phase_3+0x51>
-  4010df:	b8 00 00 00 00       	mov    $0x0,%eax
-  4010e4:	05 81 00 00 00       	add    $0x81,%eax
+  4010df:	b8 00 00 00 00       	mov    $0x0,%eax              //Case ; 
+  
+  4010e4:	05 81 00 00 00       	add    $0x81,%eax //;129
   4010e9:	eb 05                	jmp    4010f0 <phase_3+0x5d>
-  4010eb:	b8 00 00 00 00       	mov    $0x0,%eax
-  4010f0:	2d df 01 00 00       	sub    $0x1df,%eax
+  4010eb:	b8 00 00 00 00       	mov    $0x0,%eax              //Case 3;
+  
+  4010f0:	2d df 01 00 00       	sub    $0x1df,%eax //;479
   4010f5:	eb 05                	jmp    4010fc <phase_3+0x69>
-  4010f7:	b8 00 00 00 00       	mov    $0x0,%eax
-  4010fc:	05 4c 03 00 00       	add    $0x34c,%eax
+  4010f7:	b8 00 00 00 00       	mov    $0x0,%eax             //Case ;
+  
+  4010fc:	05 4c 03 00 00       	add    $0x34c,%eax //;844
   401101:	eb 05                	jmp    401108 <phase_3+0x75>
-  401103:	b8 00 00 00 00       	mov    $0x0,%eax
-  401108:	2d 56 01 00 00       	sub    $0x156,%eax
+  401103:	b8 00 00 00 00       	mov    $0x0,%eax             //Case ;
+  
+  401108:	2d 56 01 00 00       	sub    $0x156,%eax //;342
   40110d:	eb 05                	jmp    401114 <phase_3+0x81>
-  40110f:	b8 00 00 00 00       	mov    $0x0,%eax
-  401114:	05 56 01 00 00       	add    $0x156,%eax
+  40110f:	b8 00 00 00 00       	mov    $0x0,%eax             //Case 6;
+  
+  401114:	05 56 01 00 00       	add    $0x156,%eax //;342
   401119:	eb 05                	jmp    401120 <phase_3+0x8d>
-  40111b:	b8 00 00 00 00       	mov    $0x0,%eax
-  401120:	2d 77 03 00 00       	sub    $0x377,%eax
+  40111b:	b8 00 00 00 00       	mov    $0x0,%eax             //Case ;
+  
+  401120:	2d 77 03 00 00       	sub    $0x377,%eax //;887
   401125:	eb 0a                	jmp    401131 <phase_3+0x9e>
+  
   401127:	e8 28 07 00 00       	callq  401854 <explode_bomb>
   40112c:	b8 00 00 00 00       	mov    $0x0,%eax
-  401131:	83 7c 24 0c 05       	cmpl   $0x5,0xc(%rsp)
+  
+  401131:	83 7c 24 0c 05       	cmpl   $0x5,0xc(%rsp) // must be less than 5
   401136:	7f 06                	jg     40113e <phase_3+0xab>
   401138:	3b 44 24 08          	cmp    0x8(%rsp),%eax
   40113c:	74 05                	je     401143 <phase_3+0xb0>
+  
   40113e:	e8 11 07 00 00       	callq  401854 <explode_bomb>
   401143:	48 83 c4 18          	add    $0x18,%rsp
   401147:	c3                   	retq   
@@ -486,7 +496,7 @@ Disassembly of section .text:
   401199:	e8 b6 06 00 00       	callq  401854 <explode_bomb>
   40119e:	8b 7c 24 0c          	mov    0xc(%rsp),%edi
   4011a2:	e8 a1 ff ff ff       	callq  401148 <func4>
-  4011a7:	3d 3d 06 00 00       	cmp    $0x63d,%eax
+  4011a7:	3d 3d 06 00 00       	cmp    $0x63d,%eax // ;1597
   4011ac:	74 05                	je     4011b3 <phase_4+0x3e>
   4011ae:	e8 a1 06 00 00       	callq  401854 <explode_bomb>
   4011b3:	48 83 c4 18          	add    $0x18,%rsp
@@ -692,7 +702,7 @@ Disassembly of section .text:
   401425:	84 c0                	test   %al,%al
   401427:	74 24                	je     40144d <strings_not_equal+0x4f>
   401429:	3a 45 00             	cmp    0x0(%rbp),%al
-  40142c:	74 09                	je     401437 <strings_not_equal+0x39>
+  40142c:	74 09                	je     401437 <strings_not_equal+0x39> 
   40142e:	66 90                	xchg   %ax,%ax
   401430:	eb 22                	jmp    401454 <strings_not_equal+0x56>
   401432:	3a 45 00             	cmp    0x0(%rbp),%al
