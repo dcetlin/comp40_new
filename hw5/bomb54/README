@@ -1,5 +1,29 @@
-This is bomb 54 for lab comp40fall17.
+Coders: Jeremy Batchelder and Daniel Cetlin
+Bomb #: 54
+Collaborators: We did not recieve any help on this project. We used B&O 3.1 -3.7
+and an array of Google searches to figure out different assembly language 
+instructions.
+Time speng: We spent approximately 12 hours on this project
 
-It is owned by the following student(s):
-daniel.cetlin@tufts.edu
-jeremy.batchelder@tufts.edu
+Phase 1: Phase 1 accepts a character pointer to a string. If this input string
+is not equal to “They roused him with mustard and cress.” the bomb will explode
+
+Phase 2: Phase 2 accepts a string of integers. These integers are placed into
+an array and are iterated through. If the number at index [k-1] is not equal to 
+the number at index [k] + 5, the bomb will explode.
+
+Phase 3: Phase 3 accepts two numbers in a string and converts them to ints. The 
+first number corresponds to a case in a switch statement. If this number is 
+larger than the number of cases, the bomb will explode. Each case performs 
+either addition or subtraction on a variable x. The value of x after the 
+case must equal the value of the second number.
+
+Phase 4: Phase 4 accepts one number n as a parameter. The sum of the Fibonnaci
+Sequence numbers from 0 -> n must equal 1597. 
+
+Phase 5: 
+
+Phase 6: Phase 6 accepts one number and adds it to the front of a linked list. 
+Phase 6 then sorts this linked list in descending order. If the value of 6th
+node in this linked list is not the parameter passed into Phase 6,
+the bomb will explode. 
